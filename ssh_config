@@ -1,0 +1,212 @@
+Host luna
+  HostName 192.168.20.6
+  User ctaylor
+
+Host demo
+   User webfront
+   HostName demo.webfrontgears.com
+   LocalForward 7623 localhost:7623
+   LocalForward 7662 localhost:7662
+   LocalForward 7432 localhost:7432
+   LocalForward 7443 localhost:7443
+
+Host demoapp
+   User app
+   HostName demo.webfrontgears.com
+   Port 6622
+
+Host demorayapp
+   User app
+   HostName demo.webfrontgears.com
+   Port 7622
+
+Host webfront_vm
+  User webfront
+  HostName 25.25.106.89
+
+Host webfront_vm_app
+  User app
+  HostName 25.25.106.89
+  Port 6622
+
+Host pyro
+   User webfront
+   HostName pyro.webfrontgears.com
+
+Host pyroapp
+   User app
+   HostName pyro.webfrontgears.com
+   Port 6622
+
+Host drmmember
+   User webfront
+   ForwardAgent yes
+   HostName drm-member.natbuild.com.au
+   LocalForward 9622 localhost:6622
+
+Host drmmemberapp
+   User app
+   ForwardAgent yes
+   HostName drm-member.natbuild.com.au
+   Port 6622
+
+Host phoenix
+  User webfront
+  Hostname 25.0.211.30
+  IdentityFile ~/.ssh/webfront_deploy
+  LocalForward 11622 0.0.0.0:6622
+
+ # Port 7623
+
+Host phoenixapp
+  User app
+  Hostname localhost
+  Port 11622
+
+Host excelold
+  User webfront
+  Hostname excel.online.net.nz
+  Port 5522
+  LocalForward 5433 192.168.200.11:5432
+
+Host natbuildold
+  User webfront
+  Hostname natbuild.webfrontgears.com
+  Port 22
+
+Host drm
+  User webfront
+  ForwardAgent yes
+  Hostname drm-1.cloudapp.net
+  Port 22
+  LocalForward 9122 localhost:6622
+
+Host drmapp
+  User app
+  Hostname drm-1.cloudapp.net
+  Port 6622
+  IdentityFile ~/.ssh/webfront_deploy
+
+Host wolverine
+  User webfront
+  Hostname wolverine.webfrontgears.com
+  Port 22
+
+Host wolverineapp
+  User app
+  Hostname wolverine.webfrontgears.com
+  Port 6622
+
+Host demo
+  User webfront
+  Hostname demohost.webfrontgears.com
+  Port 22
+
+Host demoapp
+  User app
+  Hostname demohost.webfrontgears.com
+  Port 6622
+
+Host excelold
+  User webfront
+  Hostname excel.online.net.nz
+  Port 5522
+
+Host excel
+  User webfront
+  Hostname excel.online.net.nz
+  ForwardAgent yes
+  LocalForward 0.0.0.0:9622 localhost:6622
+  LocalForward 0.0.0.0:5433 192.9.200.11:5432
+  LocalForward 0.0.0.0:3389 192.9.200.11:3389
+
+Host excelapp
+  User app
+  Hostname localhost
+  Port 9622
+
+Host lockfast
+  Hostname 13.59.75.12
+  User webfront
+  IdentityFile ~/.ssh/Lockfast.pem
+  LocalForward 10622 localhost:6622
+
+Host lockfastapp
+   User app
+   Hostname localhost
+  # HostName lockfast.webfrontgears.com
+   Port 10622
+  
+Host lockfastold
+  Hostname 204.44.85.168
+  User webfront
+
+Host rhino
+  Hostname 25.19.20.195
+  User webfront
+
+Host ferntree
+  User webfront
+Host ferntreeapp
+Host ferntree*
+  Hostname 25.3.103.33
+
+Host cronus
+Host cronusapp
+Host cronus*
+  Hostname localhost
+
+Host iceman
+  User webfront
+Host icemantapp
+Host iceman*
+  Hostname iceman.webfrontgears.com
+
+Host junior
+Host juniorapp
+Host junior*
+  Hostname 25.5.147.215
+
+Host dahlsens
+  Hostname mail.dahlsens.com.au
+  Port 222
+  User webfront
+  LocalForward 1433 0.0.0.0:443
+  LocalForward 1480 0.0.0.0:80
+  LocalForward 1122 0.0.0.0:6622
+  LocalForward 1432 0.0.0.0:5432
+  LocalForward 139 0.0.0.0:139
+
+Host dahlsensapp
+  Hostname localhost
+  Port 1122
+
+Host test
+  User webfront
+Host testapp
+Host test*
+  Hostname test.webfrontgears.com
+
+Host local
+Host localapp
+  GatewayPorts yes
+Host local*
+  Hostname localhost
+
+Host *app
+  Port 6622
+  User app
+  ForwardAgent yes
+
+ServerAliveInterval 60
+Compression yes
+ControlMaster auto
+ControlPath ~/.ssh/cm_socket/%r@%h:%p
+ForwardAgent yes
+StrictHostKeyChecking no
+
+
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+
+Host *
+    AddressFamily inet
