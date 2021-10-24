@@ -4,7 +4,7 @@ Host luna
 
 Host demo
    User webfront
-   HostName demo.webfrontgears.com
+   HostName demo.webfront.app
    LocalForward 7623 localhost:7623
    LocalForward 7662 localhost:7662
    LocalForward 7432 localhost:7432
@@ -20,48 +20,57 @@ Host demorayapp
    HostName demo.webfrontgears.com
    Port 7622
 
+Host webfront_vm*
+  HostName 25.47.114.63
 Host webfront_vm
   User webfront
-  HostName 25.25.106.89
 
 Host webfront_vm_app
   User app
-  HostName 25.25.106.89
   Port 6622
 
 Host pyro
    User webfront
-   HostName pyro.webfrontgears.com
+   HostName admin.webfront.app
 
 Host pyroapp
    User app
-   HostName pyro.webfrontgears.com
+   HostName admin.webfront.app
    Port 6622
 
-Host drmmember
+Host lyndon
+   User webfront
+   HostName 25.12.81.3
+Host lyndonapp
+   HostName 25.12.81.3
+   User app
+   Port 6622
+
+Host drm
    User webfront
    ForwardAgent yes
-   HostName drm-member.natbuild.com.au
+   HostName drm.natbuild.com.au
    LocalForward 9622 localhost:6622
 
-Host drmmemberapp
+Host drmapp
    User app
    ForwardAgent yes
-   HostName drm-member.natbuild.com.au
+   HostName drm.natbuild.com.au
+   #Hostname localhost
    Port 6622
 
 Host phoenix
   User webfront
-  Hostname 25.0.211.30
+  Hostname 25.82.85.64
   IdentityFile ~/.ssh/webfront_deploy
-  LocalForward 11622 0.0.0.0:6622
+  #LocalForward 11622 0.0.0.0:6622
 
  # Port 7623
 
 Host phoenixapp
   User app
-  Hostname localhost
-  Port 11622
+  Hostname 25.82.85.64
+  Port 6622
 
 Host excelold
   User webfront
@@ -74,14 +83,14 @@ Host natbuildold
   Hostname natbuild.webfrontgears.com
   Port 22
 
-Host drm
+Host drm1
   User webfront
   ForwardAgent yes
   Hostname drm-1.cloudapp.net
   Port 22
   LocalForward 9122 localhost:6622
 
-Host drmapp
+Host drm1app
   User app
   Hostname drm-1.cloudapp.net
   Port 6622
@@ -167,6 +176,29 @@ Host juniorapp
 Host junior*
   Hostname 25.5.147.215
 
+Host one
+   User webfront
+   Port 9921
+Host oneapp
+   Port 9621
+Host one*
+	Hostname metal.one.webfront.app
+	#Hostname 121.208.196.191
+
+Host two
+   User webfront
+   Port 22
+Host twoapp
+Host two*
+  Hostname two.vm.webfront.app
+
+Host five
+   User webfront
+   Port 22
+Host fiveapp
+Host five*
+  Hostname five.vm.webfront.app
+
 Host dahlsens
   Hostname mail.dahlsens.com.au
   Port 222
@@ -176,16 +208,37 @@ Host dahlsens
   LocalForward 1122 0.0.0.0:6622
   LocalForward 1432 0.0.0.0:5432
   LocalForward 139 0.0.0.0:139
-
 Host dahlsensapp
   Hostname localhost
   Port 1122
 
+Host matt
+  #Hostname v2.ecowasprs.aspirestaging.com.au
+  Port 10022
+  User webfront
+Host mattapp
+Host matt*
+  #Hostname 25.16.229.86
+  Hostname v2.ecowasprs.aspirestaging.com.au
+
+Host ecobeta
+  User webfront
+Host ecobetaapp
+Host ecobeta*
+  Hostname beta.ecowasprs.com
+  
 Host test
   User webfront
 Host testapp
 Host test*
   Hostname test.webfrontgears.com
+
+Host flagstaff
+  User webfront
+  Port 22
+Host flagstaffapp
+Host flagstaff*
+  Hostname flagstaff.webfront.app
 
 Host local
 Host localapp
@@ -203,8 +256,9 @@ Compression yes
 ControlMaster auto
 ControlPath ~/.ssh/cm_socket/%r@%h:%p
 ForwardAgent yes
+IdentityFile ~/.ssh/id_rsa
+IdentityFile ~/.ssh/webfront_deploy
 StrictHostKeyChecking no
-
 
 Ciphers aes128-ctr,aes192-ctr,aes256-ctr
 
